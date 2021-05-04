@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Testing Onliner Search Results">
+    <parameter name="url" value="https://www.onliner.by/"/>
+    <parameter name="chromedriverPath" value="C://Program Files//ChromeDriver//chromedriver.exe"/>
+        <test name="Tests">
+               <classes>
+            <class name="tests.TestCase"/>
+                   <parameter name="tvModel" value="samsung"/>
+                   <parameter name="price" value="1000"/>
+                   <parameter name="resolution" value="1920x1080"/>
+                   <parameter name="diagonalSizeStart" value="40"/>
+                   <parameter name="diagonalSizeTo" value="50"/>
+
+        </classes>
+    </test>
+    </suite>
