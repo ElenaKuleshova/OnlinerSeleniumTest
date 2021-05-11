@@ -51,6 +51,7 @@ public boolean checkTVModelFilter(List<WebElement> elements, String tvModel){
     public boolean checkResolutionFilter(List<WebElement> elements, String resolution){
         for (WebElement element : elements){
             String str = element.getText();
+            System.out.println(str);
             if (!str.contains(resolution)){
                 return false;
             }
@@ -62,6 +63,7 @@ public boolean checkTVModelFilter(List<WebElement> elements, String tvModel){
         for (WebElement element : elements){
             String str = element.getText();
             str = str.substring(0,4);
+            System.out.println(str);
             str = str.replace("\"", "");
             double actualDiagonal = Double.parseDouble(str);
 

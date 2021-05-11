@@ -19,9 +19,16 @@ import java.util.List;
 
 public class TestCase extends BaseTest {
 
-    @Parameters({"tvModel", "price", "resolution", "diagonalSizeStart", "diagonalSizeTo"})
+    @Parameters({"filterTitleProducer","filterValueProducer",
+            "price",
+            "filterTitleResolution","filterValueResolution",
+            "filterTitleDiagonal", "filterValueDiagonalMin", "filterValueDiagonalMax"
+           })
     @Test
-    public void testTVSearchResults(String tvModel, String price, String resolution, String diagonalSizeStart, String diagonalSizeTo) throws Exception {
+    public void testTVSearchResults(String filterTitleProducer,String filterValueProducer,
+                                    String price,
+                                    String filterTitleResolution, String filterValueResolution,
+                                    String filterTitleDiagonal, String filterValueDiagonalMin,String filterValueDiagonalMax){
 
         Assert.assertEquals(driver.getTitle(), "Onliner");
 
@@ -42,26 +49,28 @@ public class TestCase extends BaseTest {
         Assert.assertTrue(driver.findElement(new By.ByXPath("//h1[contains(text(), 'Телевизоры')]")).isDisplayed());
 
         //Select filters for TV Search
-        televisionsPage.selectCheckboxByValue(tvModel);
+        televisionsPage.selectCheckboxByValue(filterTitleProducer, filterValueProducer);
         televisionsPage.setPrice("до", price);
-        televisionsPage.selectCheckboxByValue(resolution);
-        televisionsPage.selectFirstDiagonalSizeFromDropdown(diagonalSizeStart);
-        televisionsPage.selectSecondDiagonalSizeFromDropdown(diagonalSizeTo);
+        televisionsPage.selectCheckboxByValue(filterTitleResolution, filterValueResolution);
+        televisionsPage.selectCheckboxByValue(filterTitleDiagonal, filterValueDiagonalMin);
+        televisionsPage.selectCheckboxByValue(filterTitleDiagonal, filterValueDiagonalMax);
+        //televisionsPage.selectFirstDiagonalSizeFromDropdown(diagonalSizeStart);
+        //televisionsPage.selectSecondDiagonalSizeFromDropdown(diagonalSizeTo);
 
         //Wait
        WebDriverWait wait = new WebDriverWait(driver, 30);
-       wait.until(ExpectedConditions.visibilityOfElementLocated(new By.ByXPath("//div[@class='schema-products']")));
-       wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(new By.ByXPath("//div[@class='schema-product__group']")));
+       wait.until(ExpectedConditions.presenceOfElementLocated(new By.ByXPath("//span[@class='schema-filter-button__sub schema-filter-button__sub_main'][contains(text(), 'Найдено')]")));
+       //wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(new By.ByXPath("//div[@class='schema-product__group']")));
 
 
        Validation validation = new Validation(driver);
 
        List<WebElement> productElements = validation.getProductDescription();
 
-       Assert.assertTrue(validation.checkTVModelFilter(productElements,tvModel));
-       Assert.assertTrue(validation.checkResolutionFilter(productElements,resolution));
-       Assert.assertTrue(validation.checkDiagonalSizeFilter(productElements,diagonalSizeStart,diagonalSizeTo));
-       Assert.assertTrue(validation.checkPriceFilter(price));
+       //Assert.assertTrue(validation.checkTVModelFilter(productElements,tvModel));
+       //Assert.assertTrue(validation.checkResolutionFilter(productElements,resolution));
+       //Assert.assertTrue(validation.checkDiagonalSizeFilter(productElements,diagonalSizeStart,diagonalSizeTo));
+       //Assert.assertTrue(validation.checkPriceFilter(price));
 
            }
 }
