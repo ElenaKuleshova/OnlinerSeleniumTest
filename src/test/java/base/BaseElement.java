@@ -1,7 +1,6 @@
 package base;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -32,8 +31,8 @@ public class BaseElement implements WebElement{
         wait.until(ExpectedConditions.invisibilityOfElementWithText(Locator, text));
     }
 
-    public void clickElement(By elementLocator) {
-        getElement(elementLocator).click();
+    public void clickElement(By Locator) {
+        getElement(Locator).click();
     }
 
      @Override
