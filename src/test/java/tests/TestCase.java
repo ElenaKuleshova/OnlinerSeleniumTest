@@ -4,9 +4,7 @@ import base.BaseElement;
 import base.BaseTest;
 import base.BrowserService;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
+
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -15,7 +13,7 @@ import pages.ElectronicaMenuPage;
 import pages.TelevisionsPage;
 import pages.OnlinerHomePage;
 
-import java.util.List;
+
 
 
 
