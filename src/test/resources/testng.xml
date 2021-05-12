@@ -1,12 +1,18 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Testing Onliner Search Results">
-    <parameter name="url" value="https://www.onliner.by/"/>
-            <test name="Tests">
+                <test name="Tests">
                <classes>
             <class name="tests.TestCase"/>
+                   <parameter name="mainSectionName" value="Каталог"/>
+                   <parameter name="catalogItem" value="Электроника"/>
+                   <parameter name="menuAsideTitle" value="Телевидение"/>
+                   <parameter name="menuDropdownTitle" value="Телевизоры"/>
+
                    <parameter name="filterTitleProducer" value="Производитель"/>
                    <parameter name="filterValueProducer" value="Samsung"/>
-                   <parameter name="price" value="1000"/>
+                   <parameter name="filterTitlePrice" value="цена в предложениях"/>
+                   <parameter name="pricePlaceholder" value="до"/>
+                   <parameter name="priceValue" value="1000"/>
                    <parameter name="filterTitleResolution" value="Разрешение"/>
                    <parameter name="filterValueResolution" value="1920x1080"/>
                    <parameter name="filterTitleDiagonal" value="Диагональ"/>

@@ -8,21 +8,22 @@ import org.testng.annotations.*;
 public class BaseTest {
     public static WebDriver driver;
 
-    @Parameters({"url"})
-    @BeforeSuite
-   public void initializeWebDriver(String url) {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
 
-        driver.get(url);
+    @BeforeSuite
+   public void initializeWebDriver() {
+        ReadProperties readProperties = new ReadProperties();
+
+        BrowserService browserService = new BrowserService();
+        browserService.navigateByUrl(readProperties.properties.getProperty("url"));
+        driver = BrowserService.getDriver();
     }
 
     @AfterSuite
-    public void quitDriver() {
-        driver.quit();
+   public static void tearDown(){
+       BrowserService.quitDriver();
     }
+
+
 
 
 

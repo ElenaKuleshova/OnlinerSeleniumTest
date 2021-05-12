@@ -1,28 +1,33 @@
 package pages;
 
+import base.BaseElement;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+
 import org.openqa.selenium.support.PageFactory;
 
 public class OnlinerHomePage {
     WebDriver driver;
 
-    @FindBy(linkText = "Каталог")
-    WebElement catalogSectionButton;
+    private final String onlinerSection= "%s";
+    private String onlinerPageTitle = "Onliner";
 
-    @FindBy(linkText = "Новости")
-    WebElement newsSectionButton;
-
+    public String getOnlinerPageTitle(){
+        return onlinerPageTitle;
+    }
 
     public OnlinerHomePage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }
 
-    public CatalogPage clickCatalogSectionButton(){
-        catalogSectionButton.click();
-        return new CatalogPage(driver);
+
+    public void navigateSection(String mainSectionName){
+        BaseElement baseElement = new BaseElement(By.linkText(String.format(onlinerSection,mainSectionName)));
+        baseElement.clickElement(By.linkText(String.format(onlinerSection,mainSectionName)));
+
     }
 
 
